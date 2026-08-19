@@ -20,7 +20,7 @@ steps:
   - name: checkout tag
     image: alpine/git
     commands:
-      - cd exa
+      - cd eza
       - git fetch --all --tags
       - git checkout tags/${DRONE_TAG}
     depends_on:
@@ -28,7 +28,7 @@ steps:
   - name: cargo build
     image: rust:latest
     commands:
-      - cd exa
+      - cd eza
       - cargo build --release --target x86_64-unknown-linux-gnu
       - cd target/x86_64-unknown-linux-gnu/release
     depends_on:
@@ -37,8 +37,8 @@ steps:
     image: rust:latest
     commands:
       - mkdir /tmp/verify && cd /tmp/verify && touch verify
-      - /drone/src/exa/target/x86_64-unknown-linux-gnu/release/eza --long
-      - lines=$(/drone/src/exa/target/x86_64-unknown-linux-gnu/release/eza --long | wc -l)
+      - /drone/src/eza/target/x86_64-unknown-linux-gnu/release/eza --long
+      - lines=$(/drone/src/eza/target/x86_64-unknown-linux-gnu/release/eza --long | wc -l)
       - if test $lines -ne 1; then exit 1; fi
     depends_on:
       - "cargo build"
@@ -46,7 +46,7 @@ steps:
     image: vbatts/slackware:15
     commands:
       - mkdir -p dist/usr/sbin
-      - cp exa/target/x86_64-unknown-linux-gnu/release/eza ./dist/usr/sbin/eza
+      - cp eza/target/x86_64-unknown-linux-gnu/release/eza ./dist/usr/sbin/eza
       - ln -sf eza ./dist/usr/sbin/exa
       - cp -R ./usr ./dist
       - chmod +x ./dist/usr/sbin/eza
