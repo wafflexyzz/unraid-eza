@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
-  <!ENTITY name       "unraid-exa">
+  <!ENTITY name       "unraid-eza">
   <!ENTITY author     "dtomlinson">
   <!ENTITY org        "dtomlinson91">
   <!ENTITY version    "v0.23.5">
@@ -15,8 +15,8 @@
 
 <CHANGES>
 
-###2022-05-05
-- Initial release - exa v0.10.1
+###2026-08-19
+- Migrated plugin build to eza v0.23.5
 
 </CHANGES>
 

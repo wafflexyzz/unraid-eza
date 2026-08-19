@@ -47,11 +47,10 @@ steps:
     commands:
       - mkdir -p dist/usr/sbin
       - cp eza/target/x86_64-unknown-linux-gnu/release/eza ./dist/usr/sbin/eza
-      - ln -sf eza ./dist/usr/sbin/exa
       - cp -R ./usr ./dist
       - chmod +x ./dist/usr/sbin/eza
       - cd dist
-      - makepkg -l y -c y ../unraid-exa-${DRONE_TAG}.txz
+      - makepkg -l y -c y ../unraid-eza-${DRONE_TAG}.txz
     depends_on:
       - "verify"
   - name: prepare release
@@ -68,7 +67,7 @@ steps:
         from_secret: GITEA_KEY
       base_url: https://git.panaetius.co.uk
       files:
-        - ./unraid-exa-${DRONE_TAG}.txz
+        - ./unraid-eza-${DRONE_TAG}.txz
       checksum:
         - md5
       title: ${DRONE_TAG}
@@ -84,7 +83,7 @@ steps:
       api_key:
         from_secret: GITHUB_KEY
       files:
-        - ./unraid-exa-${DRONE_TAG}.txz
+        - ./unraid-eza-${DRONE_TAG}.txz
       checksum:
         - md5
       title: ${DRONE_TAG}

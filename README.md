@@ -2,7 +2,7 @@
 
 This is an eza plugin for **Unraid 7+**.
 
-<img src="./assets/unraid-exa.png"/>
+<img src="./assets/unraid-eza.png"/>
 
 ## description
 
