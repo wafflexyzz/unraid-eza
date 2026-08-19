@@ -3,7 +3,7 @@
   <!ENTITY name       "unraid-exa">
   <!ENTITY author     "dtomlinson">
   <!ENTITY org        "dtomlinson91">
-  <!ENTITY version    "v0.10.1">
+  <!ENTITY version    "v0.23.5">
   <!ENTITY gitURL     "https://git.panaetius.co.uk/&org;/&name;">
   <!ENTITY pluginURL  "&gitURL;/raw/branch/main/&name;.plg">
   <!ENTITY releaseURL "&gitURL;/releases/download/&version;/&name;-&version;.txz">
@@ -71,17 +71,17 @@ upgradepkg --install-new &plugin;/&name;-&version;.txz
 
 <FILE Name="&emhttp;/README.md">
 <INLINE>
-**exa**
+**eza**
 
-exa is a modern replacement for the venerable file-listing command-line program ls that ships with Unix and Linux operating systems, giving it more features and better defaults. It uses colours to distinguish file types and metadata. It knows about symlinks, extended attributes, and Git. And it’s small, fast, and just one single binary.
+eza is a modern replacement for the venerable file-listing command-line program ls that ships with Unix and Linux operating systems, giving it more features and better defaults. It uses colours to distinguish file types and metadata. It knows about symlinks, extended attributes, and Git. And it’s small, fast, and just one single binary.
 
-By deliberately making some decisions differently, exa attempts to be a more featureful, more user-friendly version of ls. For more information, see [exa’s website](https://the.exa.website/).
+By deliberately making some decisions differently, eza attempts to be a more featureful, more user-friendly version of ls. For more information, see [the eza repository](https://github.com/eza-community/eza).
 </INLINE>
 </FILE>
 
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
-echo "*** Removing exa ***"
+echo "*** Removing eza ***"
 
 # Remove plugin related files
 removepkg &name;-&version;
@@ -90,7 +90,7 @@ rm -rf &emhttp;
 rm -rf &plugin;
 
 echo
-echo "*** Successfully removed exa ***"
+echo "*** Successfully removed eza ***"
 </INLINE>
 </FILE>
 </PLUGIN>

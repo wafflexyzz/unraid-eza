@@ -37,26 +37,27 @@ steps:
     image: rust:latest
     commands:
       - mkdir /tmp/verify && cd /tmp/verify && touch verify
-      - /drone/src/exa/target/x86_64-unknown-linux-gnu/release/exa --long
-      - lines=$(/drone/src/exa/target/x86_64-unknown-linux-gnu/release/exa --long | wc -l)
+      - /drone/src/exa/target/x86_64-unknown-linux-gnu/release/eza --long
+      - lines=$(/drone/src/exa/target/x86_64-unknown-linux-gnu/release/eza --long | wc -l)
       - if test $lines -ne 1; then exit 1; fi
     depends_on:
       - "cargo build"
   - name: build slackware package
-    image: vbatts/slackware:14.2
+    image: vbatts/slackware:15
     commands:
       - mkdir -p dist/usr/sbin
-      - cp exa/target/x86_64-unknown-linux-gnu/release/exa ./dist/usr/sbin/exa
+      - cp exa/target/x86_64-unknown-linux-gnu/release/eza ./dist/usr/sbin/eza
+      - ln -sf eza ./dist/usr/sbin/exa
       - cp -R ./usr ./dist
-      - chmod +x ./dist/usr/sbin/exa
+      - chmod +x ./dist/usr/sbin/eza
       - cd dist
       - makepkg -l y -c y ../unraid-exa-${DRONE_TAG}.txz
     depends_on:
       - "verify"
   - name: prepare release
-    image: vbatts/slackware:14.2
+    image: vbatts/slackware:15
     commands:
-      - echo "exa ${DRONE_TAG} - built@$(date '+%FT%TZ') [Drone ${DRONE_SYSTEM_VERSION}]" > ./release_note
+      - echo "eza ${DRONE_TAG} - built@$(date '+%FT%TZ') [Drone ${DRONE_SYSTEM_VERSION}]" > ./release_note
       - cat ./release_note
     depends_on:
       - "build slackware package"
