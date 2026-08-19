@@ -1,8 +1,8 @@
-# eza
+# unraid-eza
 
-This is the repository for the unraid-exa plugin, now built from eza.
+This is an eza plugin for **Unraid 7+**.
 
-<img src="https://git.panaetius.co.uk/dtomlinson91/unraid-exa/raw/branch/master/assets/unraid-exa.png"/>
+<img src="./assets/unraid-exa.png"/>
 
 ## description
 
@@ -15,3 +15,7 @@ By deliberately making some decisions differently, eza attempts to be a more fea
 Drone builds the plugin source using cargo on a new tag creation.
 
 Tag versions follow eza releases.
+
+## credits
+
+Originally based on the unraid-exa plugin created by [dtomlinson91](https://github.com/dtomlinson91).
