@@ -60,23 +60,6 @@ steps:
       - cat ./release_note
     depends_on:
       - "build slackware package"
-  - name: publish gitea release
-    image: plugins/gitea-release
-    settings:
-      api_key:
-        from_secret: GITEA_KEY
-      base_url: https://git.panaetius.co.uk
-      files:
-        - ./unraid-eza-${DRONE_TAG}.txz
-      checksum:
-        - md5
-      title: ${DRONE_TAG}
-      note: ./release_note
-      file_exists: "skip"
-      when:
-        event: tag
-    depends_on:
-      - "prepare release"
   - name: publish github release
     image: plugins/github-release@sha256:24f5fb388173c0ec211d1c73d2c4441efd3cd24d0ba9eea148b98c40d03807ff
     settings:
@@ -93,16 +76,3 @@ steps:
         event: tag
     depends_on:
       - "prepare release"
-  - name: slack
-    image: plugins/slack
-    settings:
-      webhook:
-        from_secret: BUILD_STATUS_SLACK_WEBHOOK
-      username: drone
-    when:
-      status:
-        - "success"
-        - "failure"
-    depends_on:
-      - "publish gitea release"
-      - "publish github release"

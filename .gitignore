@@ -1,1 +1,4 @@
 .DS_STORE
+drone-compose.local.yml
+.build/
+dist/

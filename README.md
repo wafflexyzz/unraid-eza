@@ -10,9 +10,22 @@ eza is a modern replacement for the venerable file-listing command-line program 
 
 By deliberately making some decisions differently, eza attempts to be a more featureful, more user-friendly version of ls. For more information, see [the eza repository](https://github.com/eza-community/eza).
 
-## dev
+## Build locally
 
-Drone builds the plugin source using cargo on a new tag creation.
+The plugin can be built without Drone using Docker. Docker Desktop (or another
+Docker-compatible runtime) is required because the package contains an
+x86_64 Linux binary and is created with Slackware's `makepkg`.
+
+```sh
+./build.sh v0.23.5
+```
+
+The version defaults to the version in `unraid-eza.plg` when omitted. The
+script initializes the `eza` submodule, checks out the matching eza tag,
+builds and smoke-tests the binary, and writes these files to `dist/`:
+
+- `unraid-eza-v0.23.5.txz`
+- `md5sum.txt`
 
 Tag versions follow eza releases.
 
